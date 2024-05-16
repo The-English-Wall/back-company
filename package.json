@@ -1,15 +1,17 @@
 {
-  "name": "academlomeals_db",
+  "name": "company_db",
   "version": "1.0.0",
-  "description": "",
+  "description": "Company microservice",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/server.js",
+    "build": "node build src/index.js",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Alan Rojas",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
