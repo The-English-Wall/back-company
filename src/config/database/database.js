@@ -1,8 +1,9 @@
 import { Sequelize } from 'sequelize';
 import { envs } from '../enviroments/enviroments.js';
 
-export const sequelize = new Sequelize(envs.DB_URI, {
+export const sequelize = new Sequelize(`postgresql://${envs.DB_USERNAME}:${envs.DB_PASSWORD}@${envs.DB_HOST}:${envs.DB_PORT}/${envs.DB_NAME_COMPANY}`, {
   logging: false,
+  ssl: true
 });
 
 export async function authenticate() {
