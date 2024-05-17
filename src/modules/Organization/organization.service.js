@@ -36,8 +36,7 @@ export class OrganizationService {
             throw new Error(`Company with id ${id} not found`, 404)
         }
 
-        const existingSupplierList = company.supplierList || []
-        const updatedSupplierList = [...existingSupplierList, ...supplierList]
+        const updatedSupplierList = supplierList
 
         return this.updateOrganization(id, { supplierList: updatedSupplierList })
     }

@@ -88,5 +88,8 @@ export const deleteOrganization = catchAsync(async (req, res, next) => {
 
     await organizationService.deleteOrganization(organization)
 
-    return res.status(200).json(null)
+    return res.status(200).json({
+        status: 'succes',
+        message: 'Company deleted successfully'
+    })
 })
