@@ -11,15 +11,19 @@ import {
     deleteOrganization
 } from './organization.controller.js'
 
-import { validateExistOrganization } from './organization.middleware.js'
+import { validateExistOrganization, protect } from './organization.middleware.js'
 
 router.route('/')
     .get(findAllOrganization)
     .post(createOrganization)
+// .post(protect, createOrganization)
 router.route('/:id')
     .get(validateExistOrganization, findOneOrganization)
     .patch(updateOrganization)
+    // .patch(protect, updateOrganization)
     .delete(deleteOrganization)
+// .delete(protect, deleteOrganization)
 
 router.route('/:id/supplier-list')
     .patch(updateSupplierListOrganization)
+// .patch(protect, updateSupplierListOrganization)

@@ -10,11 +10,11 @@ export class OrganizationService {
         })
     }
 
-    async finOneOrganization(id, organizationId) {
+    async finOneOrganization(id) {
         return await Organization.findOne({
             where: {
                 status: true,
-                id: organizationId || id
+                id: id
             }
         })
     }

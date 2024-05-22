@@ -57,7 +57,7 @@ export const updateOrganization = catchAsync(async (req, res, next) => {
         next(new AppError(`Organization whit id ${id} not found`, 404))
     }
 
-    const updateOrganization = await organizationService.updateOrganization(organization, companyData)
+    const updateOrganization = await organizationService.updateOrganization(organization.id, companyData)
 
     res.status(200).json(updateOrganization)
 })

@@ -22,6 +22,11 @@ const companySchema = z.object({
     supplierList: z.array(z.object({
         id: z.number().positive(),
         supplierName: z.string()
+    })).optional(),
+    userList: z.array(z.object({
+        name: z.string(),
+        email: z.string(),
+        password: z.string()
     })).optional()
 })
 
