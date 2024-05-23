@@ -76,10 +76,13 @@ const Organization = sequelize.define('organization', {
     },
     taxId: {
         type: DataTypes.INTEGER,
-        allowNull: true, //este estado es solo para prueba de endpoint, cambiar a false
-        field: 'tax_id'
+        allowNull: false
     },
     supplierList: {
+        type: DataTypes.JSON,
+        allowNull: true
+    },
+    userList: {
         type: DataTypes.JSON,
         allowNull: true
     },

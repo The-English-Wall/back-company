@@ -10,11 +10,11 @@ export class OrganizationService {
         })
     }
 
-    async finOneOrganization(id, organizationId) {
+    async finOneOrganization(id) {
         return await Organization.findOne({
             where: {
                 status: true,
-                id: organizationId || id
+                id: id
             }
         })
     }
@@ -36,8 +36,7 @@ export class OrganizationService {
             throw new Error(`Company with id ${id} not found`, 404)
         }
 
-        const existingSupplierList = company.supplierList || []
-        const updatedSupplierList = [...existingSupplierList, ...supplierList]
+        const updatedSupplierList = supplierList
 
         return this.updateOrganization(id, { supplierList: updatedSupplierList })
     }
