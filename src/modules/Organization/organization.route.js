@@ -13,6 +13,10 @@ import {
 
 import { validateExistOrganization, protect } from './organization.middleware.js'
 
+router.route('/companyValidation', () => {
+    return 'Conected'
+})
+
 router.route('/')
     .get(findAllOrganization)
     .post(createOrganization)
