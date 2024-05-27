@@ -1,3 +1,5 @@
+import { ERROR_MESSAGES } from '../../common/utils/ErrorMessagesHanddle.js'
+import { SUCCES_MESSAGES } from '../../common/utils/succesHandle.js'
 import { AppError, catchAsync } from '../../errors/index.js'
 import { validateOrganization, validatePartialOrganization } from './organization.schema.js'
 import { OrganizationService } from './organization.service.js'
@@ -18,7 +20,7 @@ export const findOneOrganization = catchAsync(async (req, res, next) => {
     const organization = await organizationService.finOneOrganization(id)
 
     if (!organization) {
-        next(new AppError(`Organization whit id ${id} not found`, 404))
+        next(new AppError(ERROR_MESSAGES.error_company_not_found, 404))
     }
 
     return res.json(organization)
@@ -54,7 +56,7 @@ export const updateOrganization = catchAsync(async (req, res, next) => {
     const organization = await organizationService.finOneOrganization(id)
 
     if (!organization) {
-        next(new AppError(`Organization whit id ${id} not found`, 404))
+        next(new AppError(ERROR_MESSAGES.error_company_not_found, 404))
     }
 
     const updateOrganization = await organizationService.updateOrganization(organization.id, companyData)
@@ -66,7 +68,7 @@ export const updateSupplierListOrganization = catchAsync(async (req, res, next) 
     const { supplierList } = req.body
 
     if (!Array.isArray(supplierList)) {
-        return next(new AppError('Supplier list must be an array', 422))
+        return next(new AppError(ERROR_MESSAGES.error_company_supplier_list, 422))
     }
 
     const { id } = req.params
@@ -83,13 +85,10 @@ export const deleteOrganization = catchAsync(async (req, res, next) => {
     const organization = await organizationService.finOneOrganization(id)
 
     if (!organization) {
-        next(new AppError(`Organization whit id ${id} not found`, 404))
+        next(new AppError(ERROR_MESSAGES.error_company_not_found, 404))
     }
 
     await organizationService.deleteOrganization(organization)
 
-    return res.status(200).json({
-        status: 'succes',
-        message: 'Company deleted successfully'
-    })
+    return res.status(200).json(SUCCES_MESSAGES.success_company_deleted)
 })
