@@ -2,6 +2,7 @@ import { AppError, catchAsync } from '../../errors/index.js'
 import { OrganizationService } from './organization.service.js'
 import { promisify } from 'util';
 import jwt from 'jsonwebtoken';
+import { ERROR_MESSAGES } from '../../common/utils/ErrorMessagesHanddle.js';
 
 const organizationService = new OrganizationService()
 
@@ -12,7 +13,7 @@ export const validateExistOrganization = catchAsync(async (req, res, next) => {
     const organization = await organizationService.finOneOrganization(id, organizationId)
 
     if (!organization) {
-        next(new AppError(`This organization doen't exist`, 404))
+        next(new AppError(ERROR_MESSAGES.error_company_not_exist, 404))
     }
 
     req.organization = organization;
@@ -29,7 +30,7 @@ export const protect = catchAsync(async (req, res, next) => {
     }
 
     if (!token) {
-        next(new AppError('You are not logged in! Please log in to get access', 401));
+        next(new AppError(ERROR_MESSAGES.error_user_not_login, 401));
     }
 
     const decoded = await promisify(jwt.verify)(
@@ -41,6 +42,6 @@ export const protect = catchAsync(async (req, res, next) => {
         req.token = token
         next()
     } else {
-        next(new AppError('Unauthorization', 401))
+        next(new AppError(ERROR_MESSAGES.error_company_unauthorized, 401))
     }
 });
