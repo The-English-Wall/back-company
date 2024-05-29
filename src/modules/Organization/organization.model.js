@@ -75,7 +75,7 @@ const Organization = sequelize.define('organization', {
         defaultValue: true
     },
     taxId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false
     },
     supplierList: {

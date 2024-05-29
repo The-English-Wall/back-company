@@ -18,7 +18,7 @@ const companySchema = z.object({
     legalManagerName: z.string().min(3).max(25),
     legalManagerId: z.string().min(3).max(25),
     legalManagerEmail: z.string().email({ message: 'Invalid email type' }),
-    taxId: z.number().positive(),
+    taxId: z.string(),
     supplierList: z.array(z.object({
         id: z.number().positive(),
         supplierName: z.string()
